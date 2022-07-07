@@ -6,38 +6,40 @@
 bg_color = Color( 1, 1, 1, 1 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 7, 16.5 )
+extents = Vector2( 8, 16.5 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 7, 17 )
+extents = Vector2( 8, 17 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 7, 16.5 )
+extents = Vector2( 8, 16.5 )
 
 [node name="Paddle" type="Node2D" groups=["paddle"]]
 script = ExtResource( 1 )
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="Panel" type="PanelContainer" parent="."]
 margin_left = -7.0
 margin_top = -50.0
 margin_right = 7.0
 margin_bottom = 50.0
-rect_min_size = Vector2( 10, 100 )
+rect_min_size = Vector2( 16, 100 )
 custom_styles/panel = SubResource( 1 )
 
 [node name="KinematicTop" type="KinematicBody2D" parent="." groups=["paddle", "paddle_top"]]
 
 [node name="CollisionTop" type="CollisionShape2D" parent="KinematicTop"]
-position = Vector2( 0, -33.5 )
+position = Vector2( 1, -33.5 )
+scale = Vector2( 1.00381, 1 )
 shape = SubResource( 2 )
 
 [node name="KinematicMid" type="KinematicBody2D" parent="." groups=["paddle", "paddle_mid"]]
 
 [node name="CollisionMid" type="CollisionShape2D" parent="KinematicMid"]
+position = Vector2( 1, 0 )
 shape = SubResource( 3 )
 
 [node name="KinematicBot" type="KinematicBody2D" parent="." groups=["paddle", "paddle_bot"]]
 
 [node name="CollisionBot" type="CollisionShape2D" parent="KinematicBot"]
-position = Vector2( 0, 33.5 )
+position = Vector2( 1, 33.5 )
 shape = SubResource( 4 )
