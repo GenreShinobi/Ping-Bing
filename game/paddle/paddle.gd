@@ -5,7 +5,7 @@ var padding := 16.0
 var paddle_speed = Vector2(0.0, 400.0)
 var paddle_size = Vector2(16, 100)
 
-onready var panel = $PanelContainer
+onready var panel = $Panel
 var ball
 
 # paddle side
@@ -24,10 +24,16 @@ func _physics_process(delta :float):
 	if is_in_group("player_paddle"):
 		if(Input.is_key_pressed(KEY_W)):
 			position += -paddle_speed * delta
+			
 		if(Input.is_key_pressed(KEY_S)):
 			position += paddle_speed * delta
-	if is_in_group("ai_paddle"):
-		position.y = ball.position.y
+			
+	elif is_in_group("ai_paddle"):
+		if ball.position.y > position.y + (paddle_size.y / 2 + 10):
+			position.y += 250 * delta
+			
+		elif ball.position.y < position.y + (paddle_size.y / 2 - 10):
+			position.y -= 250 * delta
 		
 	position.y = clamp(position.y, 0.0 + (paddle_size.y/2) + 4, Screen.SCREEN_HEIGHT - (paddle_size.y / 2) - 4)
 
@@ -39,6 +45,10 @@ func setStartingPosition() -> void:
 	else:
 		position.x = padding
 		position.y = Screen.HALF_SCREEN_HEIGHT
+		
+		
+func resetStartingPosition() -> void:
+	position.y = Screen.HALF_SCREEN_HEIGHT
 
 
 func setAIPaddleSide() -> void:
