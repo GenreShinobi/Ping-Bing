@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://ball/ball.tscn" type="PackedScene" id=2]
 [ext_resource path="res://paddle/paddle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/fonts/primary_font_medium.tres" type="DynamicFont" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 521, 5 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -24,3 +27,13 @@ position = Vector2( 52, -54 )
 
 [node name="Ball" parent="." instance=ExtResource( 2 )]
 position = Vector2( 84, -54 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="." groups=["boundary"]]
+
+[node name="CollisionTop" type="CollisionShape2D" parent="KinematicBody2D" groups=["boundary"]]
+position = Vector2( 511, -5 )
+shape = SubResource( 1 )
+
+[node name="CollisionBtm" type="CollisionShape2D" parent="KinematicBody2D" groups=["boundary"]]
+position = Vector2( 511, 605 )
+shape = SubResource( 1 )
