@@ -21,7 +21,7 @@ State="*res://singletons/state.gd"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/ridiculous_coding/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [physics]
 

@@ -28,18 +28,6 @@ func _physics_process(delta :float):
 				speed = speed * Vector2(1, -1)
 				
 
-func _process(delta :float):
-	var fps = Engine.get_frames_per_second()
-	var lerp_interval = speed / fps
-	var lerp_position = global_transform.origin + lerp_interval
-	
-	if fps > 60:
-		set_as_toplevel(true)
-		global_transform.origin = global_transform.origin.linear_interpolate(lerp_position, 20 * delta)
-	else:
-		global_transform = global_transform
-		set_as_toplevel(false)
-
 func setStartingPosition() -> void:
 	position = starting_position
 
